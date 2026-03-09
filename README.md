@@ -1,9 +1,7 @@
-# F1_project
 
-=======
 # 🏎️ F1 Race Prediction App
 
-A desktop application that predicts Formula 1 race outcomes using AI and real telemetry data from the FastF1 API.
+A desktop application that predicts Formula 1® race outcomes using AI and real telemetry data from the FastF1 API.
 
 ---
 
@@ -21,7 +19,7 @@ The app follows a **Layered Architecture** with strict top-down dependencies:
 └──────────────┬──────────────┘
                │ Triggers Prediction
 ┌──────────────▼──────────────┐
-│  Prediction Engine & AI     │  ← Domain Layer
+│  Prediction Engine & AI     │ ← Domain Layer
 │  └─ Feature Engineering     │
 └──────────────┬──────────────┘
                │ Requests Data
@@ -46,4 +44,3 @@ Each layer only depends on the layer directly below it, ensuring changes in one 
 | **Performance** | FastF1 telemetry files are massive and slow to process | Heavy data fetching and AI inference run asynchronously in lower layers, keeping the UI responsive |
 | **Maintainability** | F1 rules, tracks, and models change frequently | Strict layer boundaries allow swapping AI models (e.g., Scikit-learn → XGBoost) without touching the UI |
 | **Testability** | Predictions must be validated without manual UI interaction | Decoupled layers enable headless automated testing of the AI model against historical data |
- main
