@@ -1,13 +1,9 @@
- baran
 # F1_project
 
-guncelleme
 =======
 # 🏎️ F1 Race Prediction App
 
 A desktop application that predicts Formula 1 race outcomes using AI and real telemetry data from the FastF1 API.
-
-> **COMP 3304 — Lab 4**
 
 ---
 
