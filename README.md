@@ -1,7 +1,6 @@
+# F1 Race Prediction App
 
-# 🏎️ F1 Race Prediction App
-
-A desktop application that predicts Formula 1® race outcomes using AI and real telemetry data from the FastF1 API.
+A desktop application that predicts Formula 1® race outcomes using AI-powered analysis and real telemetry data from the FastF1 API.
 
 ---
 
