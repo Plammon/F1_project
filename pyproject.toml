@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "f1-predictor"
+version = "0.1.0"
+description = "Desktop prototype and midterm artefacts for an F1 race prediction app."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "pandas>=2.0",
+  "python-pptx>=1.0",
+  "reportlab>=4.4"
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

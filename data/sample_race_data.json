@@ -1,0 +1,163 @@
+{
+  "2025": {
+    "Australian Grand Prix": {
+      "driver_features": {
+        "Max Verstappen": {
+          "qualifying_score": 97,
+          "recent_form": 95,
+          "track_fit": 94,
+          "pit_efficiency": 88,
+          "reliability": 91
+        },
+        "Charles Leclerc": {
+          "qualifying_score": 93,
+          "recent_form": 90,
+          "track_fit": 91,
+          "pit_efficiency": 86,
+          "reliability": 87
+        },
+        "Lando Norris": {
+          "qualifying_score": 92,
+          "recent_form": 91,
+          "track_fit": 89,
+          "pit_efficiency": 87,
+          "reliability": 88
+        },
+        "Lewis Hamilton": {
+          "qualifying_score": 88,
+          "recent_form": 86,
+          "track_fit": 87,
+          "pit_efficiency": 84,
+          "reliability": 85
+        },
+        "George Russell": {
+          "qualifying_score": 87,
+          "recent_form": 85,
+          "track_fit": 86,
+          "pit_efficiency": 84,
+          "reliability": 84
+        }
+      }
+    },
+    "British Grand Prix": {
+      "driver_features": {
+        "Lando Norris": {
+          "qualifying_score": 95,
+          "recent_form": 93,
+          "track_fit": 96,
+          "pit_efficiency": 89,
+          "reliability": 88
+        },
+        "Max Verstappen": {
+          "qualifying_score": 94,
+          "recent_form": 94,
+          "track_fit": 92,
+          "pit_efficiency": 88,
+          "reliability": 92
+        },
+        "George Russell": {
+          "qualifying_score": 91,
+          "recent_form": 89,
+          "track_fit": 93,
+          "pit_efficiency": 86,
+          "reliability": 87
+        },
+        "Lewis Hamilton": {
+          "qualifying_score": 90,
+          "recent_form": 88,
+          "track_fit": 94,
+          "pit_efficiency": 85,
+          "reliability": 86
+        },
+        "Charles Leclerc": {
+          "qualifying_score": 89,
+          "recent_form": 89,
+          "track_fit": 88,
+          "pit_efficiency": 86,
+          "reliability": 85
+        }
+      }
+    }
+  },
+  "2026": {
+    "Bahrain Grand Prix": {
+      "driver_features": {
+        "Max Verstappen": {
+          "qualifying_score": 96,
+          "recent_form": 94,
+          "track_fit": 95,
+          "pit_efficiency": 89,
+          "reliability": 92
+        },
+        "Charles Leclerc": {
+          "qualifying_score": 94,
+          "recent_form": 91,
+          "track_fit": 93,
+          "pit_efficiency": 87,
+          "reliability": 88
+        },
+        "Oscar Piastri": {
+          "qualifying_score": 92,
+          "recent_form": 92,
+          "track_fit": 90,
+          "pit_efficiency": 88,
+          "reliability": 89
+        },
+        "Lando Norris": {
+          "qualifying_score": 91,
+          "recent_form": 92,
+          "track_fit": 89,
+          "pit_efficiency": 87,
+          "reliability": 88
+        },
+        "George Russell": {
+          "qualifying_score": 89,
+          "recent_form": 87,
+          "track_fit": 88,
+          "pit_efficiency": 85,
+          "reliability": 86
+        }
+      }
+    },
+    "Italian Grand Prix": {
+      "driver_features": {
+        "Charles Leclerc": {
+          "qualifying_score": 96,
+          "recent_form": 93,
+          "track_fit": 95,
+          "pit_efficiency": 88,
+          "reliability": 88
+        },
+        "Max Verstappen": {
+          "qualifying_score": 94,
+          "recent_form": 94,
+          "track_fit": 93,
+          "pit_efficiency": 89,
+          "reliability": 92
+        },
+        "Lando Norris": {
+          "qualifying_score": 92,
+          "recent_form": 91,
+          "track_fit": 91,
+          "pit_efficiency": 87,
+          "reliability": 89
+        },
+        "Lewis Hamilton": {
+          "qualifying_score": 90,
+          "recent_form": 88,
+          "track_fit": 92,
+          "pit_efficiency": 86,
+          "reliability": 86
+        },
+        "Oscar Piastri": {
+          "qualifying_score": 89,
+          "recent_form": 90,
+          "track_fit": 88,
+          "pit_efficiency": 86,
+          "reliability": 88
+        }
+      }
+    }
+  }
+}
+
