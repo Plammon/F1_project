@@ -2,14 +2,6 @@
 
 F1 Predictor is a Python desktop application for casual Formula 1 fans who want a quick, understandable estimate of pre-race winner odds before a Grand Prix weekend. The project is organized as a layered architecture and is supported by midterm-deliverable artefacts for COMP 3304.
 
-## Team
-
-- Baris AYDIN
-- Yusuf KORKMAZ
-- Eren OZSAHIN
-- Furkan UKUS
-- Baran KARLUK
-
 ## Product Story
 
 The app helps casual fans compare leading drivers before a race and understand why one driver is favored. A user selects a season, a Grand Prix, and a prediction strategy. The system loads race features, calculates winner probabilities, and presents the predicted winner with a ranked breakdown.
