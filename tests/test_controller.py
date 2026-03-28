@@ -29,6 +29,8 @@ class ControllerTests(unittest.TestCase):
         self.assertEqual(result.predicted_winner, "Max Verstappen")
         self.assertEqual(result.strategy_name, "Balanced")
         self.assertIn(result.confidence_label, {"Low", "Medium", "High"})
+        self.assertGreater(result.score_gap, 0.0)
+        self.assertTrue(result.calibration_notes)
         self.assertEqual(result.session_label, "Fixture qualifying snapshot")
         self.assertTrue(result.generated_at.tzinfo is not None)
 

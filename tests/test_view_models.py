@@ -45,6 +45,8 @@ class ViewModelTests(unittest.TestCase):
             strategy_name="Balanced",
             confidence_label="High",
             confidence_reason="Clear separation at the front.",
+            score_gap=0.144,
+            calibration_notes=("Balanced trims overconfident pace-only forecasts.",),
             actual_podium=("Charles Leclerc", "Max Verstappen", "Lando Norris"),
             data_source="Fixture dataset",
             generated_at=datetime(2026, 3, 29, 15, 0, tzinfo=timezone.utc),
@@ -57,6 +59,8 @@ class ViewModelTests(unittest.TestCase):
         self.assertIn("Balanced", view_model.strategy_text)
         self.assertEqual(view_model.actual_result_rows[0], ("P1", "Charles Leclerc"))
         self.assertEqual(view_model.confidence_tone, "live")
+        self.assertIn("Calibrated gap", view_model.context_text)
+        self.assertIn("pace-only forecasts", view_model.explanation_text)
         self.assertIn("Strong validation", view_model.actual_result_note)
 
     def test_result_state_handles_missing_actual_result(self) -> None:
@@ -67,6 +71,8 @@ class ViewModelTests(unittest.TestCase):
             strategy_name="Qualifying Bias",
             confidence_label="Medium",
             confidence_reason="Two drivers are fairly close.",
+            score_gap=0.052,
+            calibration_notes=("Qualifying Bias still values Saturday pace most.",),
             actual_podium=None,
             data_source="FastF1 qualifying snapshot",
             generated_at=datetime(2026, 3, 29, 15, 0, tzinfo=timezone.utc),

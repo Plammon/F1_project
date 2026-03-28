@@ -30,6 +30,8 @@ class StrategyTests(unittest.TestCase):
         self.assertEqual(result.predicted_winner, "Driver A")
         self.assertEqual(result.strategy_name, "Balanced")
         self.assertIn(result.confidence_label, {"Low", "Medium", "High"})
+        self.assertGreater(result.score_gap, 0.0)
+        self.assertTrue(result.calibration_notes)
         self.assertAlmostEqual(sum(result.driver_probabilities.values()), 100.0, places=1)
 
     def test_qualifying_bias_favors_strong_qualifier(self) -> None:
@@ -44,6 +46,15 @@ class StrategyTests(unittest.TestCase):
         }
         result = ConsistencyBiasStrategy().predict(feature_table)
         self.assertEqual(result.predicted_winner, "Consistent Driver")
+
+    def test_confidence_drops_when_front_runners_are_close(self) -> None:
+        close_feature_table = {
+            "Driver A": DriverFeatures(95, 94, 92, 85, 88),
+            "Driver B": DriverFeatures(95, 94, 92, 85, 88),
+            "Driver C": DriverFeatures(94.8, 93.9, 91.9, 84.9, 88),
+        }
+        result = BalancedStrategy().predict(close_feature_table)
+        self.assertEqual(result.confidence_label, "Low")
 
 
 if __name__ == "__main__":

@@ -65,6 +65,8 @@ class PredictionResult:
     strategy_name: str
     confidence_label: str = "Medium"
     confidence_reason: str = ""
+    score_gap: float = 0.0
+    calibration_notes: tuple[str, ...] = ()
     actual_podium: tuple[str, str, str] | None = None
     historical_comparison: HistoricalComparison | None = None
     data_source: str = "unknown"

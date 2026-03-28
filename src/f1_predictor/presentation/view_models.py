@@ -102,6 +102,14 @@ def build_result_state(result: PredictionResult) -> PredictionViewModel:
         if result.actual_podium
         else "Official race result is not available yet for this weekend."
     )
+    calibration_text = (
+        f" Calibrated gap: {result.score_gap:.3f}."
+        if result.score_gap
+        else ""
+    )
+    explanation_text = " ".join(
+        list(result.top_features_or_factors) + list(result.calibration_notes)
+    )
     return PredictionViewModel(
         headline=f"{result.predicted_winner} leads this forecast.",
         status_text=(
@@ -109,9 +117,9 @@ def build_result_state(result: PredictionResult) -> PredictionViewModel:
             "using the best available data."
         ),
         context_text=(
-            f"Session used: {result.session_label}. {actual_status} {result.confidence_reason}"
+            f"Session used: {result.session_label}. {actual_status} {result.confidence_reason}{calibration_text}"
         ),
-        explanation_text=" ".join(result.top_features_or_factors),
+        explanation_text=explanation_text,
         source_label=result.data_source,
         source_tone=source_tone,
         confidence_label=f"{result.confidence_label} confidence",
