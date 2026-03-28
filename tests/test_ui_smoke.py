@@ -29,6 +29,7 @@ class UISmokeTests(unittest.TestCase):
         self.assertIn("Select a Grand Prix", self.app._headline_label.cget("text"))
         self.assertEqual(self.app._run_button.cget("state"), "normal")
         self.assertEqual(self.app._tree.get_children(), ())
+        self.assertEqual(self.app._progress_bar.winfo_manager(), "")
 
     def test_render_result_populates_table(self) -> None:
         result = PredictionResult(
@@ -51,8 +52,10 @@ class UISmokeTests(unittest.TestCase):
         self.assertIn("confidence", self.app._confidence_badge.cget("text").lower())
 
     def test_error_state_displays_banner(self) -> None:
+        self.app._show_progress()
         self.app._handle_prediction_error("Live data failed.")
         self.assertIn("Live data failed.", self.app._error_var.get())
+        self.assertEqual(self.app._progress_bar.winfo_manager(), "")
 
 
 if __name__ == "__main__":

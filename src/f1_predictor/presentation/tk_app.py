@@ -96,6 +96,14 @@ class F1PredictorApp(tk.Tk):
             font=("Segoe UI", 10, "bold"),
             padding=8,
         )
+        style.configure(
+            "Telemetry.Horizontal.TProgressbar",
+            troughcolor="#d8e2d5",
+            background="#d6572b",
+            borderwidth=0,
+            lightcolor="#d6572b",
+            darkcolor="#d6572b",
+        )
         style.map(
             "Telemetry.Treeview",
             background=[("selected", "#dfe8ff")],
@@ -211,6 +219,22 @@ class F1PredictorApp(tk.Tk):
             pady=12,
         )
         self._run_button.pack(anchor="w", fill="x", pady=(12, 0))
+
+        self._progress_label = tk.Label(
+            action_panel,
+            text="Fetching live data and calculating forecast...",
+            bg="#dfe7df",
+            fg="#516071",
+            font=("Segoe UI", 9),
+            justify="left",
+            wraplength=220,
+        )
+        self._progress_bar = ttk.Progressbar(
+            action_panel,
+            mode="indeterminate",
+            style="Telemetry.Horizontal.TProgressbar",
+            length=220,
+        )
 
     def _build_filter(
         self,
@@ -644,6 +668,7 @@ class F1PredictorApp(tk.Tk):
             return
         selected_strategy = self._strategy_var.get() or "Balanced"
         self._set_controls_enabled(False)
+        self._show_progress()
         self._apply_view_model(build_loading_state(selected_strategy))
         worker = Thread(target=self._run_prediction_worker, daemon=True)
         worker.start()
@@ -663,10 +688,12 @@ class F1PredictorApp(tk.Tk):
             self.after(0, lambda: self._handle_prediction_error(message))
 
     def _handle_prediction_error(self, message: str) -> None:
+        self._hide_progress()
         self._set_controls_enabled(True)
         self._apply_view_model(build_error_state(message))
 
     def render_result(self, result: PredictionResult) -> None:
+        self._hide_progress()
         self._set_controls_enabled(True)
         self._apply_view_model(build_result_state(result))
         if result.historical_comparison:
@@ -735,6 +762,16 @@ class F1PredictorApp(tk.Tk):
             and self._grand_prix_var.get()
             and self._strategy_var.get()
         )
+
+    def _show_progress(self) -> None:
+        self._progress_label.pack(anchor="w", fill="x", pady=(10, 4))
+        self._progress_bar.pack(anchor="w", fill="x")
+        self._progress_bar.start(12)
+
+    def _hide_progress(self) -> None:
+        self._progress_bar.stop()
+        self._progress_bar.pack_forget()
+        self._progress_label.pack_forget()
 
     def _apply_view_model(self, view_model: PredictionViewModel) -> None:
         self._headline_label.configure(text=view_model.headline)
