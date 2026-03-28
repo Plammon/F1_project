@@ -28,12 +28,14 @@ class StrategyTests(unittest.TestCase):
     def test_balanced_strategy_returns_ranked_probabilities(self) -> None:
         result = BalancedStrategy().predict(self.feature_table)
         self.assertEqual(result.predicted_winner, "Driver A")
+        self.assertEqual(result.strategy_name, "Balanced")
+        self.assertIn(result.confidence_label, {"Low", "Medium", "High"})
         self.assertAlmostEqual(sum(result.driver_probabilities.values()), 100.0, places=1)
 
     def test_qualifying_bias_favors_strong_qualifier(self) -> None:
         result = QualifyingBiasStrategy().predict(self.feature_table)
         self.assertEqual(result.predicted_winner, "Driver A")
-        self.assertIn("Qualifying Score", result.top_features_or_factors[0])
+        self.assertIn("Qualifying pace", result.top_features_or_factors[0])
 
     def test_consistency_bias_prefers_reliability(self) -> None:
         feature_table = {
@@ -46,4 +48,3 @@ class StrategyTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

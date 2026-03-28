@@ -27,8 +27,9 @@ class SmokeFlowTests(unittest.TestCase):
 
         self.assertGreaterEqual(len(result.driver_probabilities), 5)
         self.assertEqual(next(iter(result.driver_probabilities)), result.predicted_winner)
+        self.assertEqual(result.strategy_name, "Qualifying Bias")
+        self.assertIn(result.confidence_label, {"Low", "Medium", "High"})
 
 
 if __name__ == "__main__":
     unittest.main()
-

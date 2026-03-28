@@ -4,14 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "f1-predictor"
-version = "0.1.0"
-description = "Desktop prototype and midterm artefacts for an F1 race prediction app."
+version = "0.2.0"
+description = "Windows-first desktop app for explainable Formula 1 pre-race forecasts."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-  "pandas>=2.0",
-  "python-pptx>=1.0",
-  "reportlab>=4.4"
+  "fastf1>=3.5"
 ]
 
 [tool.setuptools]

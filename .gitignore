@@ -4,7 +4,12 @@ __pycache__/
 .venv/
 build/
 dist/
+cache/
+logs/
+*.egg-info/
 docs/assets/
 docs/report/*.pdf
 docs/slides/*.pptx
 *.spec
+gcm-diagnose.log
+README.local.backup.md

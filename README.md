@@ -1,23 +1,37 @@
 # F1 Predictor
 
-F1 Predictor is a Python desktop application for casual Formula 1 fans who want a quick, understandable estimate of pre-race winner odds before a Grand Prix weekend. The project is organized as a layered architecture and is supported by midterm-deliverable artefacts for COMP 3304.
+F1 Predictor is a Windows-first Python desktop application for casual Formula 1 fans who want a quick, explainable estimate of pre-race winner odds before a Grand Prix weekend. The final product uses live FastF1 schedule and qualifying data, compares multiple prediction strategies, and shows how the forecast compares to official race results when they exist.
 
-## Product Story
+## Team
 
-The app helps casual fans compare leading drivers before a race and understand why one driver is favored. A user selects a season, a Grand Prix, and a prediction strategy. The system loads race features, calculates winner probabilities, and presents the predicted winner with a ranked breakdown.
+- Baris AYDIN
+- Yusuf KORKMAZ
+- Eren OZSAHIN
+- Furkan UKUS
+- Baran KARLUK
+
+## What The App Does
+
+- Loads Grand Prix weekends from the live FastF1 schedule
+- Lets you choose a season, race weekend, and prediction strategy
+- Generates ranked winner probabilities for the field
+- Explains the top factors behind the forecast in plain English
+- Shows a confidence label for the current forecast
+- Compares the prediction with the official podium when race results are available
+- Tracks simple validation metrics across the completed races you check in the app
 
 ## Architecture
 
-The prototype follows a layered architecture with strict top-down dependencies:
+The app keeps the layered architecture from the course project:
 
 - Presentation layer: Tkinter desktop dashboard
 - Application layer: prediction controller and workflow orchestration
 - Domain layer: prediction entities and Strategy-based scoring algorithms
-- Data layer: resilient repository that prefers live FastF1 access and falls back to local mock data
+- Data layer: FastF1-backed live race data repository
 
 ## Design Pattern
 
-The primary design pattern is Strategy. The user can switch between alternative prediction approaches without changing the controller, UI, or repository code:
+The main design pattern is Strategy. The user can switch between alternative prediction approaches without changing the controller, UI, or repository code:
 
 - `BalancedStrategy`
 - `QualifyingBiasStrategy`
@@ -26,20 +40,19 @@ The primary design pattern is Strategy. The user can switch between alternative 
 ## Project Structure
 
 ```text
+assets/
+scripts/
 src/f1_predictor/
   application/
   data/
   domain/
   presentation/
-data/
 tests/
-docs/
-scripts/
 ```
 
-## Running the App
+## Install And Run
 
-### Quickest option on Windows
+### Windows quick start
 
 Double-click `run_app.bat`
 
@@ -51,34 +64,26 @@ Double-click `run_app.bat`
 pip install -r requirements.txt
 ```
 
-2. Run the desktop prototype:
+2. Run the desktop app:
 
 ```bash
 python scripts/run_app.py
 ```
 
-3. Run the test suite:
+3. Run the tests:
 
 ```bash
 python -m unittest discover -s tests -v
 ```
 
-4. Build the diagrams and midterm artefacts:
-
-```bash
-python scripts/build_deliverables.py
-```
-
 ### Optional editable install
-
-If you want the package available as `python -m f1_predictor`, run:
 
 ```bash
 pip install -e .
 python -m f1_predictor
 ```
 
-## Building a Windows EXE
+## Build The Windows EXE
 
 1. Install dependencies:
 
@@ -98,23 +103,54 @@ Or double-click:
 build_exe.bat
 ```
 
-3. The packaged app will be created at:
+3. The packaged release will be created at:
 
 ```text
 dist/F1Predictor/F1Predictor.exe
 ```
 
-## Deliverables Included
+The EXE build now includes:
 
-- Midterm report source: `docs/report/midterm_report.md`
-- Midterm report PDF: `docs/report/TeamDNF_MidtermReport.pdf`
-- Presentation outline: `docs/slides/midterm_presentation_outline.md`
-- Presentation deck: `docs/slides/TeamDNF_MidtermPresentation.pptx`
-- Mermaid UML and architecture diagrams: `docs/diagrams/`
-- Jira-ready backlog and sprint material: `docs/jira_backlog.md`, `docs/jira_sprint.md`
+- app version metadata
+- a custom application icon
+- a clean release folder
+- a runtime README next to the executable
 
-## Notes
+## Live Data Availability
 
-- Live FastF1 access is optional. If it is unavailable, the app automatically uses bundled mock data so the demo still works.
-- The app now supports both normal Python runs and a PyInstaller-based Windows executable build.
-- The repository was initialized locally and linked to the public course GitHub repository as `origin`.
+The product now uses live FastF1 data as its only end-user data source.
+
+That means:
+
+- the visible race list comes from the live FastF1 schedule
+- forecasts use live qualifying session data
+- official podium comparisons appear only when race results exist
+- if FastF1 cannot provide enough data, the app shows a clear message instead of falling back silently
+
+Typical live-data message:
+
+`We do not have enough live qualifying data for this race weekend right now. Please try another Grand Prix or try again later.`
+
+## Prediction Notes
+
+The forecast is still a heuristics-based MVP, but it is more credible than the earlier prototype because it now:
+
+- uses all available qualifying results instead of only a tiny subset
+- factors in recent completed race performance
+- rewards reliability and positions gained over recent races
+- blends current pace with track-history context when available
+- adjusts confidence when data coverage is weaker
+
+## Logging And Cache
+
+- Runtime logs are written to `logs/f1_predictor.log`
+- FastF1 cache data is stored in `cache/fastf1`
+
+These folders are created automatically when you run the app.
+
+## Known Limitations
+
+- Some race weekends may not have enough live qualifying data yet
+- Future races do not have official podiums to compare against
+- Prediction quality still depends on the completeness of the live data FastF1 can provide
+- The Windows build is not code-signed, so SmartScreen warnings may still appear on other machines
